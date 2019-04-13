@@ -8,31 +8,35 @@ int main()
     // Create the main window
     RenderWindow app(VideoMode(800, 600), "SFML window");
 
-    // Load a sprite to display
-    Texture texture;
-    if (!texture.loadFromFile("cb.bmp"))
-        return EXIT_FAILURE;
-    Sprite sprite(texture);
+    Text text;
+    Font font;
+    font.loadFromFile("arial.ttf");
+    text.setFont(font);
+    text.setCharacterSize(24);
+    text.setString("asdf");
+    text.setFillColor(Color::Red);
+    string input="as";
 
-	// Start the game loop
     while (app.isOpen())
     {
-        // Process events
         Event event;
         while (app.pollEvent(event))
         {
-            // Close window : exit
-            if (event.type == Event::Closed)
+            if (event.type == Event::Closed){
                 app.close();
+            }
+
+            if(event.type==Event::TextEntered){
+                input+=static_cast<char>(event.text.unicode);
+            }
+
+
         }
+        app.clear(Color::White);
 
-        // Clear screen
-        app.clear();
+        text.setString(input);
+        app.draw(text);
 
-        // Draw the sprite
-        app.draw(sprite);
-
-        // Update the window
         app.display();
     }
 
