@@ -2,6 +2,26 @@
 1555170265 source:/home/jacek/Desktop/EAN/main.cpp
 	<SFML/Graphics.hpp>
 
-1555172510 source:/home/jacek/Desktop/EAN-project/main.cpp
+1559393825 source:/home/jacek/Desktop/EAN-project/main.cpp
 	<SFML/Graphics.hpp>
+	"Interval.h"
+	<fstream>
+	<iostream>
+
+1556371313 /home/jacek/Desktop/EAN-project/Interval.h
+	<iostream>
+	<string>
+	<sstream>
+	<stdexcept>
+	<fenv.h>
+	<stdlib.h>
+	<stdint.h>
+	<cmath>
+	<mpfr.h>
+	<boost/lexical_cast.hpp>
+	<string.h>
+	<iomanip>
+	<fstream>
+	<float.h>
+	<typeinfo>
 
