@@ -1,37 +1,25 @@
 #include <iostream>
 #include <fstream>
+#include <windows.h>
 #include "GaussJordanMatrix.h"
-#include "IntervalUtils.h"
 
 int main(int argc, char* argv[])
 {
-	const int digits = 50;
-
-	cout << "START\n";
-
 	GaussJordanMatrix matrix;
-
-	fstream in;
-	in.open("data.in", ios::in);
-	matrix.scan(in);
-	in.close();
+	matrix.scan(cin);
 
 	try
 	{
 		matrix.calculate();
 		matrix.printAnswer(cout);
-
-		fstream out;
-		out.open("data.out", ios::out);
-		matrix.printAnswer(out);
-		out.close();
+		system("pause");
 	}
 	catch (const std::exception& e)
 	{
 		cout << e.what() << endl;
+		system("pause");
+		return -1;
 	}
-
-	cout << "\nDONE\n";
 
 	return 0;
 }
