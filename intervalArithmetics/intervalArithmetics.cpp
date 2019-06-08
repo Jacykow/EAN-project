@@ -1,27 +1,30 @@
-#pragma once
-#include "stdafx.h"
+#include <iostream>
+#include <fstream>
+#include "GaussJordanMatrix.h"
+#include "IntervalUtils.h"
 
 int main(int argc, char* argv[])
 {
 	const int digits = 50;
-
-	mpreal::set_default_prec(mpfr::digits2bits(digits));
 
 	cout << "START\n";
 
 	GaussJordanMatrix matrix;
 
 	fstream in;
-	in.open("data.in", ios::in);
-	//scan(matrix, in);
+	in.open("data2.in", ios::in);
+	matrix.scan(in);
 	in.close();
 
-	//matrix.calculate();
-	//print(matrix, cout);
+	matrix.calculate();
+	matrix.printAnswer(cout);
+	matrix.printAnswer(cout);
+	matrix.printAnswer(cout);
+	matrix.printAnswer(cout);
 
 	fstream out;
 	out.open("data.out", ios::out);
-	//print(matrix, out);
+	//matrix.print(out);
 	out.close();
 
 	cout << "DONE\n";

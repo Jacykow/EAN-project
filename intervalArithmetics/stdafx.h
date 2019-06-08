@@ -4,12 +4,9 @@
 #include <fstream>
 #include <iomanip>
 #include <vector>
-#include <mpreal.h>
 #include "Interval.h"
+#define real long double
+#define interval interval_arithmetic::Interval<real>
+#define row vector<interval>
 #include "IntervalUtils.h"
 #include "GaussJordanMatrix.h"
-
-#define interval interval_arithmetic::Interval<long double>
-
-using mpfr::mpreal;
-using std::cout;
