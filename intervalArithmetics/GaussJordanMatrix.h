@@ -12,6 +12,7 @@ using namespace std;
 
 class GaussJordanMatrix {
 public:
+	const char* ERROR_NO_ANSWER = "No answer";
 	int m;
 	int n;
 	vector<vector<interval> > matrix;
@@ -22,19 +23,20 @@ public:
 	}
 
 	void calculate() {
-		interval zero = interval(0,0);
-		interval one = interval(1,1);
+		real zeroR = 0;
+		real oneR = 0;
+		interval zero = interval(zeroR, zeroR);
+		interval one = interval(oneR, oneR);
 		for (int a = 0; a < n - 1; a++) {
 			int b = a;
 			while (b < m) {
-				if (!contains(matrix[b][a],0)) {
+				if (!contains(matrix[b][a], zeroR)) {
 					break;
 				}
 				b++;
 			}
 			if (b >= m) {
-				cout << a << endl;
-				throw "Empty column!";
+				throw exception(ERROR_NO_ANSWER);
 			}
 			if (b > a) {
 				cout << "swapping: " << a << " and " << b << endl;
@@ -71,18 +73,10 @@ public:
 		interval one = interval(1, 1);
 		for (int y = 0; y < m; y++) {
 			row r;
-			row r2;
 			for (int x = 0; x < n; x++) {
 				in >> v;
 				interval i(v, v);
 				r.push_back(i);
-
-				if (x == y) {
-					r2.push_back(one);
-				}
-				else {
-					r2.push_back(zero);
-				}
 			}
 			matrix.push_back(r);
 		}
@@ -107,10 +101,21 @@ public:
 	}
 
 private:
+	void print(real& number, ostream& out) {
+		out.setf(std::ios_base::scientific);
+		out << ((number > 0) ? " " : "") << std::setprecision(14) << number;
+	}
+
 	void print(interval& number, ostream& out) {
-		string left, right;
-		number.IEndsToStrings(left, right);
-		out << "[ " << left << ",\t" << right << "]";
+		out << "{";
+		print(number.a, out);
+		out << ",";
+		print(number.b, out);
+		out << ",";
+		real middle = 2;
+		middle = (number.a + number.b) / middle;
+		print(middle, out);
+		out << "}";
 	}
 };
 

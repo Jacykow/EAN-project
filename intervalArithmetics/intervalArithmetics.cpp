@@ -12,22 +12,26 @@ int main(int argc, char* argv[])
 	GaussJordanMatrix matrix;
 
 	fstream in;
-	in.open("data2.in", ios::in);
+	in.open("data.in", ios::in);
 	matrix.scan(in);
 	in.close();
 
-	matrix.calculate();
-	matrix.printAnswer(cout);
-	matrix.printAnswer(cout);
-	matrix.printAnswer(cout);
-	matrix.printAnswer(cout);
+	try
+	{
+		matrix.calculate();
+		matrix.printAnswer(cout);
 
-	fstream out;
-	out.open("data.out", ios::out);
-	//matrix.print(out);
-	out.close();
+		fstream out;
+		out.open("data.out", ios::out);
+		matrix.printAnswer(out);
+		out.close();
+	}
+	catch (const std::exception& e)
+	{
+		cout << e.what() << endl;
+	}
 
-	cout << "DONE\n";
+	cout << "\nDONE\n";
 
 	return 0;
 }
