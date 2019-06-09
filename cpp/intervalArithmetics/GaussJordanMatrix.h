@@ -49,7 +49,6 @@ public:
 				throw exception(ERROR_NO_ANSWER);
 			}
 			if (b > a) {
-				cout << "swapping: " << a << " and " << b << endl;
 				vector<interval> temp = matrix[b];
 				matrix[b] = matrix[a];
 				matrix[a] = temp;
